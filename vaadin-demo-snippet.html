@@ -198,7 +198,7 @@
 
     <div id="demo">
       <template is="dom-if" if="[[_isIframe]]" restamp>
-        <vaadin-demo-iframe-renderer src="[[iframeSrc]]" id="[[id]]">
+        <vaadin-demo-iframe-renderer src="[[iframeSrc]]" id="[[id]]" base-href="[[baseHref]]">
           <slot></slot>
         </vaadin-demo-iframe-renderer>
       </template>
@@ -235,6 +235,7 @@
             }
           },
           iframeSrc: String,
+          baseHref: String,
           _isIframe: {
             type: Boolean,
             value: false,
@@ -248,6 +249,12 @@
         super.ready();
         Vaadin.LightDomHelper.querySelectorAsync('template', this)
           .then(template => {
+            try {
+              const host = this.getRootNode().host.getRootNode().host;
+              this.baseHref = host.srcBaseHref;
+            } catch(e) {
+              console.error('Unable to get the `baseHref` from the <vaadin-component-demo>');
+            }
             this._showDemo(template);
           })
           .catch(error => {
