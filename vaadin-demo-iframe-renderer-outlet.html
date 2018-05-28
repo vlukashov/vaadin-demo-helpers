@@ -60,7 +60,7 @@
         switch (event.data.type) {
           case 'set-template':
             this.__webComponentsReady.then(() => {
-              this._setBaseHref();
+              this._setDemoComponentsRoot();
               this.setInnerHtmlWithScripts(event.data.html);
               this.history = ['/'];
                 this._activateHistoryEntry(0);
@@ -108,10 +108,10 @@
       this._postPopstateMessage();
     }
 
-    _setBaseHref() {
+    _setDemoComponentsRoot() {
       // store the reference for lazy loading
       window.Vaadin = window.Vaadin || {};
-      window.Vaadin.componentsDir = window.frameElement.dataset.baseHref;
+      window.Vaadin.demoComponentsRoot = window.frameElement.dataset.demoComponentsRoot;
     }
 
     setInnerHtmlWithScripts(html) {

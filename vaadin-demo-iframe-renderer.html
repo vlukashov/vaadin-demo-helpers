@@ -101,7 +101,7 @@
       <input class="url" value="[[url]]" on-change="_onUrlEdited">
     </div>
 
-    <iframe id="demo" name="[[id]]" src="[[src]]" data-base-href$="[[baseHref]]"></iframe>
+    <iframe id="demo" name="[[id]]" src="[[src]]" data-demo-components-root$="[[demoComponentsRoot]]"></iframe>
   </template>
 
   <script>
@@ -115,14 +115,14 @@
 
       static get properties() {
         return {
-          baseHref: {
-            type: String
-          },
           id: {
             type: String,
             value: () => {
               return `vaadin-demo-iframe-${instanceIndex++}`;
             }
+          },
+          demoComponentsRoot: {
+            type: String
           },
           src: {
             type: String,
