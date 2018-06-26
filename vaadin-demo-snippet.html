@@ -247,7 +247,7 @@
 
       ready() {
         super.ready();
-        Vaadin.LightDomHelper.querySelectorAsync('template', this)
+        Vaadin.Demo.LightDomHelper.querySelectorAsync('template', this)
           .then(template => {
             try {
               const host = this.getRootNode().host.getRootNode().host;
@@ -273,10 +273,10 @@
           .replace(/window\.addDemoReadyListener\('[^{]+/g, `window.addEventListener('WebComponentsReady', function() `);
 
         // Hide the use of window.Vaadin.demoComponentsRoot
-        snippet = snippet.replace(/`(\${window\.Vaadin\.demoComponentsRoot})(.+)`/gi, `'$2'`);
+        snippet = snippet.replace(/`(\${Vaadin\.Demo\.componentsRoot})(.+)`/gi, `'$2'`);
 
         // Hide the use of window.__importModule for dynamic imports
-        snippet = snippet.replace(/(window\.__importModule\(')/gi, `import('.`);
+        snippet = snippet.replace(/(Vaadin\.Demo\.import\(')/gi, `import('.`);
 
         // Remove style-scoped classes that are appended when ShadyDOM is enabled
         Array.from(this.classList).forEach(e => snippet = snippet.replace(new RegExp('\\s*' + e, 'g'), ''));

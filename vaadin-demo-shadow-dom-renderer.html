@@ -33,9 +33,9 @@
 
       ready() {
         super.ready();
-        Vaadin.LightDomHelper.querySelectorAsync('slot', this)
+        Vaadin.Demo.LightDomHelper.querySelectorAsync('slot', this)
           .then(slot => {
-            return Vaadin.LightDomHelper.querySlotContentAsync('template', slot)
+            return Vaadin.Demo.LightDomHelper.querySlotContentAsync('template', slot)
           })
           .then(template => {
             this._showDemo(template);

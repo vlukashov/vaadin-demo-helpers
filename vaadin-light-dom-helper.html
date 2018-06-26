@@ -3,9 +3,11 @@
 <script>
   (()=>{
     'use strict';
-    window.Vaadin = window.Vaadin || {};
 
-    Vaadin.LightDomHelper = {
+    window.Vaadin = window.Vaadin || {};
+    Vaadin.Demo = Vaadin.Demo || {};
+
+    Vaadin.Demo.LightDomHelper = {
       querySelectorAsync(selector, context) {
         if (!context) {
           context = document;
@@ -33,7 +35,7 @@
         const matchesFn = HTMLElement.prototype.matches
             ? HTMLElement.prototype.matches
             : HTMLElement.prototype.msMatchesSelector;
-            
+
         const query = (slot, selector) => {
           const assignedNodes = slot.assignedNodes();
           for (let i = 0; i < assignedNodes.length; i += 1) {
