@@ -275,6 +275,9 @@
         // Hide the use of window.Vaadin.demoComponentsRoot
         snippet = snippet.replace(/`(\${window\.Vaadin\.demoComponentsRoot})(.+)`/gi, `'$2'`);
 
+        // Hide the use of window.__importModule for dynamic imports
+        snippet = snippet.replace(/(window\.__importModule\(')/gi, `import('.`);
+
         // Remove style-scoped classes that are appended when ShadyDOM is enabled
         Array.from(this.classList).forEach(e => snippet = snippet.replace(new RegExp('\\s*' + e, 'g'), ''));
         snippet = snippet.replace(/ class=""/g, '');
